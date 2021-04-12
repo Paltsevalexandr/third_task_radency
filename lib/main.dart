@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:contact_list_third_task/contact_list/contact_list_view.dart';
 
 List<Map> contactList = [
@@ -14,47 +13,12 @@ List<Map> contactList = [
   ];
 
 void main() {
-  runApp(MaterialApp(
-        title: 'Contact list',
-        home: Scaffold(
-          body: ChangeNotifierProvider(
-            create: (context) => ContactList(contactList),
-            child: ContactListView()    
-          )
-        )
+  runApp(
+    MaterialApp(
+      title: 'Contact list',
+      home: Scaffold(
+        body: ContactListView()    
+      )
     )
   );
-}
-class ContactList with ChangeNotifier {
-  
-  List<Map> list;
-
-  ContactList(this.list);
-
-  Function addToFavourites(String name) {
-    return () {
-      list = [
-        for(Map item in list) 
-          if(item['name'] == name) 
-            {...item, 'isFavourite': !item['isFavourite']} 
-          else 
-            item
-      ];
-      notifyListeners();
-    };
-  }
-
-  Function editContact(contact) {
-    return () {   
-      list.add(contact);
-      notifyListeners();
-    };
-  }
-
-  Function removeContact(contact) {
-    return () {
-      list.remove(contact);
-      notifyListeners();  
-    }; 
-  }
 }

@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 
 class SubmitBtn extends StatelessWidget {
   final editContact;
-  final removeContact;
   final _formKey;
-  SubmitBtn(this.editContact, this.removeContact, this._formKey);
+  SubmitBtn(this.editContact, this._formKey);
   
   @override
   Widget build(BuildContext context) {
@@ -16,7 +15,6 @@ class SubmitBtn extends StatelessWidget {
         child: TextButton(
           onPressed: () => {
             if(_formKey.currentState.validate()) {
-              removeContact(),
               editContact(),
               Navigator.pop(context)
             }
